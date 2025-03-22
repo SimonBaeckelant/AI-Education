@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stage IA & Enseignement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#eef2ff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .timeline-horizontal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline-horizontal::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #c7d2fe;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #4f46e5;
+            border-radius: 50%;
+            margin: auto;
+            transition: transform 0.2s;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body class="bg-secondary text-gray-800 font-sans">
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primary">📘 IA & Enseignement</h1>
+            <nav class="space-x-6">
+                <button onclick="showTab('contexte')"
+                    class="font-semibold hover:text-primary transition">Contexte</button>
+                <button onclick="showTab('utilisation')"
+                    class="font-semibold hover:text-primary transition">Utilisation</button>
+                <button onclick="showTab('bibliographie')"
+                    class="font-semibold hover:text-primary transition">Bibliographie</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8">
+        <section id="contexte" class="tab-content" data-aos="fade-up">
+            <h2 class="text-3xl font-semibold mb-4">Contexte</h2>
+            <p class="bg-white p-6 rounded-xl shadow-sm">Texte expliquant le contexte de l'utilisation de l'IA dans
+                l'enseignement.</p>
+        </section>
+
+        <section id="utilisation" class="tab-content hidden" data-aos="fade-up">
+            <h2 class="text-3xl font-semibold mb-8 text-center">Utilisation</h2>
+            <div id="timeline-container" class="timeline-horizontal"></div>
+            <div id="details-container" class="hidden mt-10 bg-white p-6 rounded-xl shadow-md"></div>
+        </section>
+
+        <section id="bibliographie" class="tab-content hidden" data-aos="fade-up">
+            <h2 class="text-3xl font-semibold mb-4">Bibliographie</h2>
+            <div class="bg-white p-6 rounded-xl shadow-sm space-y-2">
+                <ul class="list-disc list-inside space-y-2 text-sm">
+                    <li><strong>Akademichni studii. Seriya «Pedagogika»</strong> (2023). <em>AI-powered pedagogy:
+                            Foreign language study in higher education</em>. <em>Academic Studies. Series
+                            “Pedagogy”</em>, 4. <a href="https://doi.org/10.52726/as.pedagogy/2023.4.7"
+                            class="text-blue-600 underline">https://doi.org/10.52726/as.pedagogy/2023.4.7</a></li>
+                    <li><strong>Baskara, F. X. R.</strong> (2023). <em>Personalised learning with AI: Implications for
+                            Ignatian pedagogy</em>. <em>International Journal of Education and Practice</em>, 7(1),
+                        1–16. <a href="https://doi.org/10.32851/ijebp.v7n1.p1-16"
+                            class="text-blue-600 underline">https://doi.org/10.32851/ijebp.v7n1.p1-16</a></li>
+                    <li><strong>Baidoo-Anu, D., & Owusu Ansah, L.</strong> (2023). <em>Education in the era of
+                            generative artificial intelligence (AI): Understanding the potential benefits of ChatGPT in
+                            promoting teaching and learning</em>. <em>Journal of Artificial Intelligence</em>, 7(1),
+                        52–62. <a href="https://doi.org/10.61969/jai.1337500"
+                            class="text-blue-600 underline">https://doi.org/10.61969/jai.1337500</a></li>
+                    <li><strong>Casal-Otero, L. et al.</strong> (2023). <em>AI literacy in K-12: A systematic literature
+                            review</em>. <em>International Journal of STEM Education</em>, 10(29). <a
+                            href="https://doi.org/10.1186/s40594-023-00454-3"
+                            class="text-blue-600 underline">https://doi.org/10.1186/s40594-023-00454-3</a></li>
+                    <li><strong>Chen, L., Chen, P., & Lin, Z.</strong> (2020). <em>Artificial intelligence in education:
+                            A review</em>. <em>IEEE Access</em>, 8, 75264-75278. <a
+                            href="https://doi.org/10.1109/ACCESS.2020.2988510"
+                            class="text-blue-600 underline">https://doi.org/10.1109/ACCESS.2020.2988510</a></li>
+                    <li><strong>Dong, Y.</strong> (2023). <em>Revolutionizing academic English writing through
+                            AI-powered pedagogy</em>. <em>Journal of Higher Education Research</em>, 4(2), 52-62. <a
+                            href="https://doi.org/10.32629/jher.v4i2.1188"
+                            class="text-blue-600 underline">https://doi.org/10.32629/jher.v4i2.1188</a></li>
+                    <li><strong>Fawns, T., & Jones, D.</strong> (2023). <em>ChatGPT and generative AI: Possibilities in
+                            teacher education</em>. <em>Education Sciences</em>, 13(10), 998. <a
+                            href="https://doi.org/10.3390/educsci13100998"
+                            class="text-blue-600 underline">https://doi.org/10.3390/educsci13100998</a></li>
+                    <li><strong>Hassan, A., Ali, S. A., & Abdulkhaleq, N. M. S.</strong> (2022). <em>Artificial
+                            intelligence in educational examinations</em>. In <em>From the Internet of Things to the
+                            Internet of Ideas</em> (pp. 73–85). <a href="https://doi.org/10.1007/978-3-031-17746-0_7"
+                            class="text-blue-600 underline">https://doi.org/10.1007/978-3-031-17746-0_7</a></li>
+                    <li><strong>Kehoe, F.</strong> (2023). <em>Leveraging generative AI tools in teacher education</em>.
+                        <em>International Journal of Technology Enhanced Learning</em>, 7(2), 124–135. <a
+                            href="https://doi.org/10.22554/ijtel.v7i2.124"
+                            class="text-blue-600 underline">https://doi.org/10.22554/ijtel.v7i2.124</a></li>
+                    <li><strong>Lampou, R.</strong> (2023). <em>The integration of artificial intelligence in
+                            education</em>. <em>Review of Artificial Intelligence in Education</em>, 4(00), e15. <a
+                            href="https://doi.org/10.37497/rev.artif.intell.educ.v4i00.15"
+                            class="text-blue-600 underline">https://doi.org/10.37497/rev.artif.intell.educ.v4i00.15</a>
+                    </li>
+                    <li><strong>Li, Y.</strong> (2024). <em>The application of artificial intelligence in exam
+                            evaluation</em>. <em>Procedia Computer Science</em>, 207, 144–150. <a
+                            href="https://doi.org/10.1016/j.procs.2024.09.144"
+                            class="text-blue-600 underline">https://doi.org/10.1016/j.procs.2024.09.144</a></li>
+                    <li><strong>Moussavou, J.</strong> (2023). <em>Quelles innovations pédagogiques à l’ère de l’IA
+                            ?</em> <em>Management & Datascience</em>, 7(4). <a
+                            href="https://doi.org/10.36863/mds.a.26522"
+                            class="text-blue-600 underline">https://doi.org/10.36863/mds.a.26522</a></li>
+                    <li><strong>Pascal, C.</strong> (2022). <em>Intelligence artificielle et transformation du
+                            travail</em>. <em>Culture, Technique et Développement</em>, (68). <a
+                            href="https://doi.org/10.4000/ctd.6803"
+                            class="text-blue-600 underline">https://doi.org/10.4000/ctd.6803</a></li>
+                    <li><strong>Ray, S., & Sikdar, D. P.</strong> (2024). <em>AI-driven flipped classroom</em>.
+                        <em>British Journal of Education, Learning and Development Psychology</em>, 7(2). <a
+                            href="https://doi.org/10.52589/BJELDP-LTDJFLIH"
+                            class="text-blue-600 underline">https://doi.org/10.52589/BJELDP-LTDJFLIH</a></li>
+                    <li><strong>Sotomayor Cantos, K. F. et al.</strong> (2023). <em>Artificial intelligence in language
+                            teaching and learning</em>. <em>Ciencia Latina Revista Científica Multidisciplinar</em>,
+                        7(4), 5629–5638. <a href="https://doi.org/10.37811/cl_rcm.v7i4.7368"
+                            class="text-blue-600 underline">https://doi.org/10.37811/cl_rcm.v7i4.7368</a></li>
+                    <li><strong>Tan, K. et al.</strong> (2023). <em>Towards applying powerful large AI models in
+                            classroom teaching</em>. <em>arXiv</em>. <a href="https://doi.org/10.48550/arXiv.2305.03433"
+                            class="text-blue-600 underline">https://doi.org/10.48550/arXiv.2305.03433</a></li>
+                    <li><strong>Tapalova, O., & Zhiyenbayeva, N.</strong> (2022). <em>Artificial intelligence in
+                            education</em>. <em>Electronic Journal of e-Learning</em>, 20(5). <a
+                            href="https://doi.org/10.34190/ejel.20.5.2597"
+                            class="text-blue-600 underline">https://doi.org/10.34190/ejel.20.5.2597</a></li>
+                    <li><strong>Zhang, Y., & Wang, L.</strong> (2022). <em>The application of artificial intelligence
+                            assistant</em>. <em>Frontiers in Psychology</em>, 13, 929175. <a
+                            href="https://doi.org/10.3389/fpsyg.2022.929175"
+                            class="text-blue-600 underline">https://doi.org/10.3389/fpsyg.2022.929175</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-gray-500 py-6">© 2025 - Stage IA & Enseignement</footer>
+
+    <script>
+        AOS.init()
+        const tabs = ['contexte', 'utilisation', 'bibliographie']
+        function showTab(id) {
+            tabs.forEach(tab => document.getElementById(tab).classList.add('hidden'))
+            document.getElementById(id).classList.remove('hidden')
+            if (id === 'utilisation') renderTimeline()
+        }
+
+        const sections = {
+            'Planification': ['Analyse de besoins', 'Recherche d\'informations', 'Planifier le programme', 'Planifier une leçon', 'Planifier un horaire'],
+            'Conception': ['Créer des exercices', 'Créer des fiches', 'Créer des visuels', 'Créer des quiz'],
+            'Mise en oeuvre': ['Enseigner', 'Interagir', 'Gérer une classe'],
+            'Suivi': ['Observer', 'Analyser les erreurs', 'Accompagner'],
+            'Évaluation': ['Créer des évaluations', 'Corriger des évaluations', 'Feedback'],
+            'Différenciation': ['Adapter les exercices', 'Soutien'],
+            'Développement professionnel': ['Se former', 'Echanger']
+        }
+
+        const detailsText = {
+            "Analyse de besoins": [
+                {
+                    text: "<strong>Khanmigo</strong> est un assistant IA conçu pour diagnostiquer les niveaux des élèves via des exercices adaptés.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><ul><li>Interactif et pensé pour l’éducation</li><li>Ludique pour les élèves</li></ul><br><u>Inconvénients</u> :<ul><li>Disponible uniquement en anglais</li><li>Accès restreint selon les régions</li></ul><br><u>Conseil</u> : Idéal pour évaluer les acquis en début d’année scolaire.",
+                    link: "https://www.khanacademy.org/"
+                },
+                {
+                    text: "<strong>Google Forms + Form Builder AI</strong> permet de générer automatiquement des questionnaires à visée diagnostique.<br><br><u>Avantages</u> :<ul><li>Simple d’utilisation</li><li>Centralisation des résultats</li></ul><br><u>Inconvénients</u> :<ul><li>Manque de profondeur pédagogique</li></ul><br><u>Conseil</u> : Inclure des questions ouvertes pour enrichir les réponses.",
+                    link: "https://workspace.google.com/marketplace/app/form_builder_for_docs/80232528543"
+                }
+            ],
+            "Recherche d'informations": [
+                {
+                    text: "<strong>Perplexity AI</strong> est un moteur de recherche qui fournit des réponses synthétiques accompagnées de sources fiables.<br><br><u>Avantages</u> :<ul><li>Gratuit avec options avancées payantes (Perplexity Pro : 20 $/mois)</li><ul><li>Rapide</li><li>Réponses sourcées</li></ul><br><u>Inconvénients</u> :<ul><li>Peut manquer de profondeur</li></ul><br><u>Conseil</u> : Préférer les recherches précises pour de meilleurs résultats.",
+                    link: "https://www.perplexity.ai"
+                },
+                {
+                    text: "<strong>Elicit</strong> aide à lire et synthétiser des articles scientifiques pour répondre à des questions précises.<br><br><u>Avantages</u> :<ul><li>Idéal pour la veille académique</li></ul><br><u>Inconvénients</u> :<ul><li>Interface en anglais</li><li>Contenus souvent complexes</li></ul><br><u>Conseil</u> : Coupler avec un outil de traduction comme DeepL.",
+                    link: "https://elicit.org"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> permet de reformuler, résumer ou clarifier des informations éducatives à partir d’un prompt.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Francophone</li><li>Souple et interactif</li></ul><br><u>Inconvénients</u> :<ul><li>Peut générer des erreurs ou hallucinations</li></ul><br><u>Conseil</u> : Coller directement le texte à analyser plutôt que de poser une question vague.",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
+                    link: "https://notebooklm.google"
+                }
+            ],
+            "Planifier le programme": [
+                {
+                    text: "<strong>ChatGPT</strong> peut générer une progression pédagogique à partir des programmes officiels et de contraintes personnalisées.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Flexible</li><li>Adaptable à tous niveaux</li></ul><br><u>Inconvénients</u> :<ul><li>Peut produire une structure incohérente sans indications précises</li></ul><br><u>Conseil</u> : Fournir des contraintes précises (ex. durée, discipline, objectifs).",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>Notion AI</strong> permet d’organiser des programmes annuels ou périodiques en blocs logiques, intégrés dans un espace de travail numérique.<br><br><u>Avantages</u> :<ul><li>Visuel</li><li>Organisé</li></ul><br><u>Inconvénients</u> :<ul><li>Moins ciblé éducation</li></ul><br><u>Conseil</u> : Utiliser les modèles éducatifs proposés comme point de départ.",
+                    link: "https://www.notion.so/product/ai"
+                }
+            ],
+            "Planifier une leçon": [
+                {
+                    text: "<strong>ChatGPT</strong> permet de créer des plans de leçon de base, en générant un déroulé pédagogique clair et structuré.<br><br><em>Exemple de prompt :</em><br>\"Proposer un plan de leçon sur les <strong>différents états de l'eau</strong> pour une classe de CE2, structuré avec : titre, objectif, matériel, étapes de la séance, évaluation.\"<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Souple</li><li>Interface disponible en français</li><li>Personnalisable selon les besoins</li></ul><br><u>Inconvénients</u> :<ul><li>Qualité variable selon la formulation du prompt</li><li>Informations à vérifier</li></ul><br><u>Conseil</u> : Utiliser un format structuré (ex. : titre – objectif – activité – évaluation).",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>Eduaide</strong> génère des plans de leçons avec objectifs, activités et évaluations, selon le niveau choisi.<br><br><u>Avantages</u> :<ul><li>Structuré</li><li>Pensé pour les enseignants</li></ul><br><u>Inconvénients</u> :<ul><li>En anglais</li></ul><br><u>Conseil</u> : Sois précis sur le niveau et les objectifs dans ta demande.",
+                    link: "https://eduaide.ai"
+                },
+                {
+                    text: "<strong>MagicSchool</strong> propose des modèles de leçons clés en main générés par IA pour différents niveaux scolaires.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><ul><li>Spécialisé éducation</li><li>Plusieurs formats disponibles</li></ul><br><u>Inconvénients</u> :<ul><li>Nécessite un compte</li><li>Interface anglaise</li></ul><br><u>Conseil</u> : Adapter la leçon proposée au contexte belge francophone.",
+                    link: "https://www.magicschool.ai"
+                }
+            ],
+            "Planifier un horaire": [
+                {
+                    text: "<strong>TimeHero</strong> aide à répartir automatiquement les tâches dans un calendrier personnel, en fonction des contraintes.<br><br><u>Avantages</u> :<ul><li>Gain de temps</li><li>Vue hebdomadaire efficace</li></ul><br><u>Inconvénients</u> :<ul><li>Pas conçu pour les emplois du temps scolaires complexes</li></ul><br><u>Conseil</u> : À utiliser pour organiser ton travail personnel, pas les horaires officiels de cours.",
+                    link: "https://www.timehero.com"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> peut générer une proposition d'emploi du temps en tenant compte de tes contraintes (heures, pauses, matières, etc).<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Adaptable</li></ul><br><u>Inconvénients</u> :<ul><li>Nécessite une vérification manuelle de faisabilité</li></ul><br><u>Conseil</u> : Énumère toutes les contraintes clairement dans ta demande.",
+                    link: "https://chat.openai.com"
+                }
+            ],
+            "Créer des exercices": [
+                {
+                    text: "<strong>Diffit</strong> génère des exercices adaptés à différents niveaux à partir d’un même contenu ou texte.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec limites de génération ; version pro à partir de 9 $/mois</li><ul><li>Idéal pour la différenciation</li><li>Facile à utiliser</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Peut nécessiter adaptation au programme</li></ul><br><u>Conseil</u> : Utilise un texte source en français pour de meilleurs résultats.",
+                    link: "https://www.diffit.me"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> permet de créer des exercices variés (QCM, Vrai/Faux, lacunes, questions ouvertes…) selon le niveau de l’élève.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Très souple</li><li>Multilingue</li></ul><br><u>Inconvénients</u> :<ul><li>Nécessite relecture pour valider pédagogiquement</li></ul><br><u>Conseil</u> : Spécifie bien le niveau et le type d’exercice attendu.",
+                    link: "https://chat.openai.com"
+                }
+            ],
+            "Créer des fiches": [
+                {
+                    text: "<strong>MagicSchool</strong> permet de générer des fiches pédagogiques complètes selon le niveau et les objectifs définis.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><ul><li>Structuré et pensé pour l’école</li></ul><br><u>Inconvénients</u> :<ul><li>En anglais</li><li>Besoin de compte utilisateur</li></ul><br><u>Conseil</u> : Traduis et adapte les contenus proposés à ton public.",
+                    link: "https://www.magicschool.ai"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> peut générer des fiches de cours explicatives, synthétiques ou illustrées selon les demandes.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Personnalisable</li><li>Souple</li></ul><br><u>Inconvénients</u> :<ul><li>Qualité variable</li></ul><br><u>Conseil</u> : Demande une structure claire avec titres, exemples et résumés.",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
+                    link: "https://notebooklm.google"
+                }
+            ],
+            "Créer des visuels": [
+                {
+                    text: "<strong>Canva + IA</strong> permet de générer des schémas, affiches, infographies ou cartes mentales à partir d’instructions simples.<br><br><u>Avantages</u> :<ul><li>Interface intuitive</li><li>Nombreux modèles éducatifs</li></ul><br><u>Inconvénients</u> :<ul><li>Fonctionnalités IA limitées en version gratuite</li></ul><br><u>Conseil</u> : Utilise les templates d’éducation pour gagner du temps.",
+                    link: "https://www.canva.com"
+                },
+                {
+                    text: "<strong>DALL·E</strong> génère des illustrations originales à partir de descriptions textuelles.<br><br><u>Avantages</u> :<ul><li>Créatif</li><li>Adapté pour représenter des concepts abstraits</li></ul><br><u>Inconvénients</u> :<ul><li>Moins pertinent pour des schémas rigoureux</li></ul><br><u>Conseil</u> : Précise bien les couleurs, formes et objets à faire apparaître.",
+                    link: "https://openai.com/dall-e"
+                }
+            ],
+            "Créer des quiz": [
+                {
+                    text: "<strong>Quizizz AI</strong> crée automatiquement des quiz interactifs à partir de documents ou de thèmes.<br><br><u>Avantages</u> :<ul><li>Ludique</li><li>Idéal pour l’évaluation formative</li></ul><br><u>Inconvénients</u> :<ul><li>Anglais par défaut</li><li>Questions parfois trop générales</li></ul><br><u>Conseil</u> : Relis et adapte chaque question avant diffusion.",
+                    link: "https://quizizz.com"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> peut générer des quiz QCM, Vrai/Faux ou à réponse ouverte en quelques secondes.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Rapide</li><li>Adaptable au niveau et au sujet</li></ul><br><u>Inconvénients</u> :<ul><li>Peut générer des ambiguïtés</li></ul><br><u>Conseil</u> : Demander les réponses et justifications avec chaque question.",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>Quizlet</strong> propose la création automatique de flashcards et de quiz à partir de contenus ou de documents grâce à son IA intégrée.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec fonctions de base ; version payante (à partir de 35 €/an) pour les fonctionnalités avancées</li><li>Idéal pour la mémorisation active</li><li>Utilisable par les élèves</li></ul><br><u>Inconvénients</u> :<ul><li>Moins adapté à l’évaluation approfondie</li></ul><br><u>Conseil</u> : Privilégier pour les révisions, en complément d’autres formats d’évaluation.",
+                    link: "https://quizlet.com"
+                }
+            ],
+            "Enseigner": [
+                {
+                    text: "<strong>Explainpaper</strong> permet de simplifier des passages complexes d'articles scientifiques ou techniques pour mieux préparer une explication orale.<br><br><u>Avantages</u> :<ul><li>Permet de clarifier rapidement des concepts</li><li>Gain de temps</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Moins pertinent pour des niveaux jeunes</li></ul><br><u>Conseil</u> : À utiliser pour reformuler des textes difficiles en langage accessible.",
+                    link: "https://www.explainpaper.com"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> peut jouer un rôle d'assistant pédagogique pour simuler des dialogues, expliquer des notions ou préparer des exposés.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Disponible en français</li><li>Personnalisable</li></ul><br><u>Inconvénients</u> :<ul><li>Peut contenir des erreurs si non vérifié</li></ul><br><u>Conseil</u> : Préparer les dialogues à l’avance et relire les suggestions avant usage.",
+                    link: "https://chat.openai.com"
+                }
+            ],
+            "Interagir": [
+                {
+                    text: "<strong>Khanmigo</strong> propose un système d’assistance pédagogique individualisée aux élèves via un chatbot intégré à des contenus scolaires.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><ul><li>Favorise l’autonomie</li><li>Interaction directe avec les contenus</li></ul><br><u>Inconvénients</u> :<ul><li>Disponible uniquement en anglais</li></ul><br><u>Conseil</u> : À réserver à des séances d’entraînement ou de révision personnalisée.",
+                    link: "https://www.khanacademy.org/khan-labs"
+                },
+                {
+                    text: "<strong>Parlay Genie</strong> génère des questions ouvertes pour stimuler des discussions en classe.<br><br><u>Avantages</u> :<ul><li>Favorise la pensée critique</li><li>Facile à utiliser</li></ul><br><u>Inconvénients</u> :<ul><li>Interface en anglais</li><li>Contenu parfois générique</li></ul><br><u>Conseil</u> : Traduire et adapter les questions aux objectifs pédagogiques visés.",
+                    link: "https://parlayideas.com/genie"
+                }
+            ],
+            "Gérer une classe": [
+                {
+                    text: "<strong>MagicSchool (gestion de classe)</strong> propose des idées et des stratégies concrètes pour gérer des situations courantes en classe à l’aide de l’IA.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><ul><li>Prépare à différents scénarios</li></ul><br><u>Inconvénients</u> :<ul><li>Peu contextualisé à certaines réalités locales</li></ul><br><u>Conseil</u> : Utiliser les suggestions comme base de réflexion, et ajuster selon le contexte.",
+                    link: "https://www.magicschool.ai"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> permet de simuler des cas de gestion de classe et de proposer des réponses pédagogiques adaptées.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Utile pour la préparation</li><li>Permet d’anticiper des imprévus</li></ul><br><u>Inconvénients</u> :<ul><li>Reste une simulation virtuelle</li></ul><br><u>Conseil</u> : Décrire précisément le contexte pour des suggestions plus pertinentes.",
+                    link: "https://chat.openai.com"
+                }
+            ],
+            "Observer": [
+                {
+                    text: "<strong>TeachFX</strong> analyse l’interaction verbale en classe et identifie les temps de parole enseignant/élèves pour favoriser une pédagogie plus participative.<br><br><u>Avantages</u> :<ul><li>Basé sur des données réelles</li><li>Utile pour auto-évaluation</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Enregistrements requis</li><li>Peut poser des questions de protection des données</li></ul><br><u>Conseil</u> : À utiliser ponctuellement pour documenter une pratique et ajuster l’équilibre des interactions.",
+                    link: "https://teachfx.com"
+                },
+                {
+                    text: "<strong>Class Analytics (LMS)</strong> fournit des tableaux de bord d’engagement des élèves à partir de plateformes numériques éducatives.<br><br><u>Avantages</u> :<ul><li>Automatisé</li><li>Facilite le repérage des décrocheurs</li></ul><br><u>Inconvénients</u> :<ul><li>Dépend de la plateforme utilisée</li><li>Peu d'analyse qualitative</li></ul><br><u>Conseil</u> : À croiser avec des observations humaines.",
+                    link: "https://support.google.com/edu/classroom"
+                }
+            ],
+            "Analyser les erreurs": [
+                {
+                    text: "<strong>Gradescope</strong> est une plateforme de correction qui regroupe les erreurs fréquentes et les classe automatiquement pour faciliter les retours collectifs.<br><br><u>Avantages</u> :<ul><li>Généralement sous licence établissement (prix sur demande)</li><ul><li>Gain de temps</li><li>Cohérence de correction</li></ul><br><u>Inconvénients</u> :<ul><li>Moins adapté aux disciplines littéraires</li><li>En anglais</li></ul><br><u>Conseil</u> : Utiliser avec des évaluations structurées (QCM ou courtes réponses).",
+                    link: "https://www.gradescope.com"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> permet d’analyser plusieurs réponses d’élèves pour identifier les erreurs récurrentes et proposer des pistes de remédiation.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Souple</li><li>Francophone</li></ul><br><u>Inconvénients</u> :<ul><li>Manque de finesse sur certaines disciplines</li></ul><br><u>Conseil</u> : Fournir plusieurs exemples de réponses pour améliorer la qualité de l’analyse.",
+                    link: "https://chat.openai.com"
+                }
+            ],
+            "Accompagner": [
+                {
+                    text: "<strong>Khanmigo</strong> offre un accompagnement interactif et personnalisé pour les élèves en autonomie, avec explications et soutien étape par étape.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><ul><li>Personnalisé</li><li>Favorise l'autonomie</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Nécessite un compte</li></ul><br><u>Conseil</u> : À recommander pour les révisions ou en appui différencié.",
+                    link: "https://www.khanacademy.org/khan-labs"
+                },
+                {
+                    text: "<strong>Socratic by Google</strong> permet aux élèves de scanner un exercice ou poser une question pour obtenir une aide pas à pas avec des ressources en ligne.<br><br><u>Avantages</u> :<ul><li>Visuel</li><li>Intuitif</li></ul><br><u>Inconvénients</u> :<ul><li>Pas conçu pour le suivi collectif</li></ul><br><u>Conseil</u> : Peut être proposé comme assistant d’étude autonome.",
+                    link: "https://socratic.org"
+                }
+            ],
+            "Se former": [
+                {
+                    text: "<strong>NotebookLM</strong> est un assistant de lecture de documents qui permet de poser des questions directement sur ses propres notes, PDF ou textes téléchargés.<br><br><u>Avantages</u> :<ul><li>Gratuit (accès via compte Google)</li><ul><li>Analyse profonde de contenus personnels</li><li>Facilite la révision ou l’exploration de sources</li></ul><br><u>Inconvénients</u> :<ul><li>Encore en développement</li><li>Limité à certains formats</li></ul><br><u>Conseil</u> : Idéal pour créer des synthèses ou préparer une intervention pédagogique à partir de documents personnels.",
+                    link: "https://notebooklm.google"
+                },
+                {
+                    text: "<strong>Perplexity AI</strong> permet d’effectuer une veille pédagogique ou disciplinaire en interrogeant des sources fiables de manière synthétique.<br><br><u>Avantages</u> :<ul><li>Gratuit avec options avancées payantes (Perplexity Pro : 20 $/mois)</li><ul><li>Réponses sourcées</li><li>Gain de temps</li></ul><br><u>Inconvénients</u> :<ul><li>Parfois trop synthétique</li></ul><br><u>Conseil</u> : Préférer des requêtes ciblées pour des résultats plus précis.",
+                    link: "https://www.perplexity.ai"
+                },
+                {
+                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
+                    link: "https://notebooklm.google"
+                }
+            ],
+            "Adapter les exercices": [
+                {
+                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
+                    link: "https://notebooklm.google"
+                }
+            ],
+            "Créer des évaluations": [
+                {
+                    text: "<strong>ChatGPT</strong> permet de générer rapidement des évaluations variées (QCM, Vrai/Faux, réponses ouvertes) à partir d’un thème donné.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><li>Rapide</li><li>Personnalisable</li></ul><br><u>Inconvénients</u> :<ul><li>Qualité variable</li><li>À relire avec rigueur</li></ul><br><u>Conseil</u> : Demander également un barème associé à chaque question.",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>MagicSchool</strong> propose des générateurs d’évaluations pour différentes matières et niveaux, avec des options IA.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><li>Structuré pour l’école</li></ul><br><u>Inconvénients</u> :<ul><li>Interface anglophone</li><li>Besoin de compte</li></ul><br><u>Conseil</u> : Utiliser comme base puis adapter le contenu.",
+                    link: "https://www.magicschool.ai"
+                }
+            ],
+            "Corriger des évaluations": [
+                {
+                    text: "<strong>Gradescope</strong> corrige automatiquement des copies en ligne, identifie les erreurs fréquentes et facilite les annotations répétées.<br><br><u>Avantages</u> :<ul><li>Généralement sous licence établissement (prix sur demande)</li><li>Gain de temps</li><li>Cohérence</li></ul><br><u>Inconvénients</u> :<ul><li>Moins pertinent pour les disciplines longues ou créatives</li></ul><br><u>Conseil</u> : Structurer les évaluations pour optimiser l’analyse automatisée.",
+                    link: "https://www.gradescope.com"
+                },
+                {
+                    text: "<strong>ChatGPT</strong> peut analyser une réponse et proposer une note ainsi qu’un commentaire de correction, si un barème est fourni.<br><br><u>Avantages</u> :<ul><li>Freemium : accès gratuit à GPT-3.5 ; accès à GPT-4 avec abonnement</li><li>Souple</li><li>Francophone</li></ul><br><u>Inconvénients</u> :<ul><li>Analyse parfois simpliste</li></ul><br><u>Conseil</u> : Préciser les critères d’évaluation dans la consigne.",
+                    link: "https://chat.openai.com"
+                }
+            ],
+            "Feedback": [
+                {
+                    text: "<strong>ChatGPT</strong> peut générer des retours détaillés, encourageants ou constructifs à partir d’un travail écrit ou d’une production.<br><br><u>Avantages</u> :<ul><li>Freemium : accès gratuit à GPT-3.5 ; version premium à 20 $/mois</li><li>Rapide</li><li>Ton personnalisable</li></ul><br><u>Inconvénients</u> :<ul><li>Relecture indispensable</li></ul><br><u>Conseil</u> : Définir le niveau de détail et le ton du feedback attendu.",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>Writable</strong> fournit un retour automatisé sur des écrits d’élèves en anglais, avec des recommandations ciblées.<br><br><u>Avantages</u> :<ul><li>Freemium : usage de base gratuit, forfaits payants pour plus d’analyses</li><li>Ciblé sur la rédaction</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Moins utile en francophonie</li></ul><br><u>Conseil</u> : Convient mieux pour les cours de langue ou contexte bilingue.",
+                    link: "https://www.writable.com"
+                }
+            ],
+            "Soutien": [
+                {
+                    text: "<strong>Khanmigo</strong> propose un accompagnement guidé à l’élève pour comprendre pas à pas un concept, avec des explications ciblées.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><li>Autonomie</li><li>Renforcement des prérequis</li></ul><br><u>Inconvénients</u> :<ul><li>Anglais</li></ul><br><u>Conseil</u> : Recommandé en travail différencié ou en tutorat numérique.",
+                    link: "https://www.khanacademy.org/khan-labs"
+                },
+                {
+                    text: "<strong>Socratic by Google</strong> permet à l’élève de poser une question ou prendre en photo un exercice pour obtenir des aides et explications visuelles.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Pratique pour les devoirs</li><li>Simple à utiliser</li></ul><br><u>Inconvénients</u> :<ul><li>Moins pertinent pour le suivi collectif</li></ul><br><u>Conseil</u> : Peut être recommandé comme outil d’étude personnelle.",
+                    link: "https://socratic.org"
+                }
+            ],
+            "Echanger": [
+                {
+                    text: "<strong>ChatGPT</strong> peut aider à rédiger des messages professionnels, simuler des échanges entre collègues ou formuler des idées à partager.<br><br><u>Avantages</u> :<ul><li>Freemium : accès de base gratuit ; version GPT-4 à 20 $/mois</li><li>Disponible à tout moment</li><li>Souple</li></ul><br><u>Inconvénients</u> :<ul><li>Ne remplace pas un dialogue humain</li></ul><br><u>Conseil</u> : Peut servir de support avant une réunion ou une prise de parole.",
+                    link: "https://chat.openai.com"
+                },
+                {
+                    text: "<strong>Poe</strong> permet de discuter avec plusieurs IA (Claude, GPT, etc.) dans une interface unifiée, utile pour explorer des idées, tester des formulations ou générer des textes à plusieurs styles.<br><br><u>Avantages</u> :<ul><li>Freemium : accès gratuit avec limitations, abonnement pour options illimitées</li><li>Accès à plusieurs IA dans un même espace</li></ul><br><u>Inconvénients</u> :<ul><li>Pas spécifiquement éducatif</li></ul><br><u>Conseil</u> : Peut servir à comparer des résultats entre plusieurs IA ou reformuler un contenu sous différents angles.",
+                    link: "https://poe.com"
+                }
+            ]
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container')
+            container.innerHTML = ''
+            Object.keys(sections).forEach(cat => {
+                const item = document.createElement('div')
+                item.className = "timeline-item w-1/6"
+                item.innerHTML = `
+        <div class='timeline-dot mb-2 cursor-pointer' onclick='toggleDropdown("${cat}", sections["${cat}"], this)'></div>
+        <div class='text-sm font-semibold cursor-pointer hover:text-primary transition' onclick='toggleDropdown("${cat}", sections["${cat}"], this)'>${cat}</div>
+      `
+                container.appendChild(item)
+            })
+        }
+
+        function toggleDropdown(cat, subCats, el) {
+            const details = document.getElementById('details-container')
+            details.classList.remove('hidden')
+            details.innerHTML = `<h3 class='text-2xl font-bold text-primary mb-4'>${cat}</h3>`
+            subCats.forEach(sub => {
+                const btn = document.createElement('button')
+                btn.textContent = sub
+                btn.className = "block w-full text-left px-4 py-2 my-1 bg-primary text-white rounded hover:bg-indigo-600 transition"
+                btn.onclick = () => showDetails(sub)
+                details.appendChild(btn)
+            })
+            window.scrollTo({ top: details.offsetTop - 100, behavior: 'smooth' })
+        }
+
+        function showDetails(title) {
+            const container = document.getElementById('details-container')
+            if (detailsText[title]) {
+                container.innerHTML = `<h3 class='text-2xl font-bold text-primary mb-4'>${title}</h3>`
+                detailsText[title].forEach(item => {
+                    container.innerHTML += `<p class='text-gray-700'>${item.text}</p><a href='${item.link}' target='_blank' class='inline-block mt-2 mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition'>Ouvrir</a><hr class='my-4'>`
+                })
+            } else {
+                container.innerHTML = `<h3 class='text-2xl font-bold text-primary mb-4'>${title}</h3><p class='text-gray-600'>Contenu à venir...</p>`
+            }
+        }
+    </script>
+</body>
+
+</html>
