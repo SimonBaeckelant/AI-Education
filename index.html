@@ -28,7 +28,7 @@
         .timeline-horizontal {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             position: relative;
             margin: 40px 0;
         }
@@ -36,12 +36,11 @@
         .timeline-horizontal::before {
             content: '';
             position: absolute;
-            top: 50%;
+            top: 24px;
             left: 0;
             width: 100%;
             height: 4px;
             background: #c7d2fe;
-            transform: translateY(-50%);
             z-index: 0;
         }
 
@@ -49,6 +48,9 @@
             position: relative;
             text-align: center;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .timeline-dot {
@@ -56,8 +58,10 @@
             height: 20px;
             background: #4f46e5;
             border-radius: 50%;
-            margin: auto;
+            margin-bottom: 8px;
             transition: transform 0.2s;
+            position: relative;
+            top: 0;
         }
 
         .timeline-item:hover .timeline-dot {
@@ -134,7 +138,8 @@
                     <li><strong>Kehoe, F.</strong> (2023). <em>Leveraging generative AI tools in teacher education</em>.
                         <em>International Journal of Technology Enhanced Learning</em>, 7(2), 124–135. <a
                             href="https://doi.org/10.22554/ijtel.v7i2.124"
-                            class="text-blue-600 underline">https://doi.org/10.22554/ijtel.v7i2.124</a></li>
+                            class="text-blue-600 underline">https://doi.org/10.22554/ijtel.v7i2.124</a>
+                    </li>
                     <li><strong>Lampou, R.</strong> (2023). <em>The integration of artificial intelligence in
                             education</em>. <em>Review of Artificial Intelligence in Education</em>, 4(00), e15. <a
                             href="https://doi.org/10.37497/rev.artif.intell.educ.v4i00.15"
@@ -155,7 +160,8 @@
                     <li><strong>Ray, S., & Sikdar, D. P.</strong> (2024). <em>AI-driven flipped classroom</em>.
                         <em>British Journal of Education, Learning and Development Psychology</em>, 7(2). <a
                             href="https://doi.org/10.52589/BJELDP-LTDJFLIH"
-                            class="text-blue-600 underline">https://doi.org/10.52589/BJELDP-LTDJFLIH</a></li>
+                            class="text-blue-600 underline">https://doi.org/10.52589/BJELDP-LTDJFLIH</a>
+                    </li>
                     <li><strong>Sotomayor Cantos, K. F. et al.</strong> (2023). <em>Artificial intelligence in language
                             teaching and learning</em>. <em>Ciencia Latina Revista Científica Multidisciplinar</em>,
                         7(4), 5629–5638. <a href="https://doi.org/10.37811/cl_rcm.v7i4.7368"
@@ -200,242 +206,786 @@
         const detailsText = {
             "Analyse de besoins": [
                 {
-                    text: "<strong>Khanmigo</strong> est un assistant IA conçu pour diagnostiquer les niveaux des élèves via des exercices adaptés.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><ul><li>Interactif et pensé pour l’éducation</li><li>Ludique pour les élèves</li></ul><br><u>Inconvénients</u> :<ul><li>Disponible uniquement en anglais</li><li>Accès restreint selon les régions</li></ul><br><u>Conseil</u> : Idéal pour évaluer les acquis en début d’année scolaire.",
-                    link: "https://www.khanacademy.org/"
-                },
-                {
-                    text: "<strong>Google Forms + Form Builder AI</strong> permet de générer automatiquement des questionnaires à visée diagnostique.<br><br><u>Avantages</u> :<ul><li>Simple d’utilisation</li><li>Centralisation des résultats</li></ul><br><u>Inconvénients</u> :<ul><li>Manque de profondeur pédagogique</li></ul><br><u>Conseil</u> : Inclure des questions ouvertes pour enrichir les réponses.",
-                    link: "https://workspace.google.com/marketplace/app/form_builder_for_docs/80232528543"
+                    name: "Khanmigo",
+                    link: "https://www.khanacademy.org/khan-labs",
+                    badge: {
+                        prix: "Gratuit (mais indisponible en Belgique)",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Actuellement gratuit pour certains pays grâce à Microsoft",
+                        "Personnalisé",
+                        "Favorise l'autonomie"
+                    ],
+                    inconvenients: [
+                        "Anglophone",
+                        "Indisponible dans certains pays comme la Belgique"
+                    ],
+                    conseil: "À recommander pour les révisions ou en appui différencié"
                 }
             ],
             "Recherche d'informations": [
                 {
-                    text: "<strong>Perplexity AI</strong> est un moteur de recherche qui fournit des réponses synthétiques accompagnées de sources fiables.<br><br><u>Avantages</u> :<ul><li>Gratuit avec options avancées payantes (Perplexity Pro : 20 $/mois)</li><ul><li>Rapide</li><li>Réponses sourcées</li></ul><br><u>Inconvénients</u> :<ul><li>Peut manquer de profondeur</li></ul><br><u>Conseil</u> : Préférer les recherches précises pour de meilleurs résultats.",
-                    link: "https://www.perplexity.ai"
+                    name: "Perplexity AI",
+                    link: "https://www.perplexity.ai",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Gratuit avec options avancées payantes (Perplexity Pro : 20 $/mois)",
+                        "Rapide",
+                        "Réponses sourcées"
+                    ],
+                    inconvenients: [
+                        "Peut manquer de profondeur"
+                    ],
+                    conseil: "Préférer les recherches précises pour de meilleurs résultats"
                 },
                 {
-                    text: "<strong>Elicit</strong> aide à lire et synthétiser des articles scientifiques pour répondre à des questions précises.<br><br><u>Avantages</u> :<ul><li>Idéal pour la veille académique</li></ul><br><u>Inconvénients</u> :<ul><li>Interface en anglais</li><li>Contenus souvent complexes</li></ul><br><u>Conseil</u> : Coupler avec un outil de traduction comme DeepL.",
-                    link: "https://elicit.org"
+                    name: "Elicit",
+                    link: "https://elicit.com",
+                    badge: {
+                        prix: "Freemium : 10 à 79$ par mois",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Idéal pour la veille académique"
+                    ],
+                    inconvenients: [
+                        "Interface en anglais",
+                        "Contenus souvent complexes"
+                    ],
+                    conseil: "Coupler avec un outil de traduction comme DeepL"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> permet de reformuler, résumer ou clarifier des informations éducatives à partir d’un prompt.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Francophone</li><li>Souple et interactif</li></ul><br><u>Inconvénients</u> :<ul><li>Peut générer des erreurs ou hallucinations</li></ul><br><u>Conseil</u> : Coller directement le texte à analyser plutôt que de poser une question vague.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Disponible en français",
+                        "Souple et interactif"
+                    ],
+                    inconvenients: [
+                        "Peut générer des erreurs ou hallucinations"
+                    ],
+                    conseil: "Coller directement le texte à analyser plutôt que de poser une question vague"
                 },
                 {
-                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
-                    link: "https://notebooklm.google"
+                    name: "NotebookLM",
+                    link: "https://notebooklm.google",
+                    badge: {
+                        prix: "Freemium : Prix variable",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium, accès gratuit très complet (accès via compte Google)",
+                        "Analyse profonde de contenus personnels",
+                        "Facilite la révision ou l’exploration de sources"
+                    ],
+                    inconvenients: [
+                        "Encore en développement",
+                        "Limité à certains formats"
+                    ],
+                    conseil: "Idéal pour créer des synthèses ou préparer une intervention pédagogique à partir de documents personnels"
                 }
             ],
             "Planifier le programme": [
                 {
-                    text: "<strong>ChatGPT</strong> peut générer une progression pédagogique à partir des programmes officiels et de contraintes personnalisées.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Flexible</li><li>Adaptable à tous niveaux</li></ul><br><u>Inconvénients</u> :<ul><li>Peut produire une structure incohérente sans indications précises</li></ul><br><u>Conseil</u> : Fournir des contraintes précises (ex. durée, discipline, objectifs).",
-                    link: "https://chat.openai.com"
-                },
-                {
-                    text: "<strong>Notion AI</strong> permet d’organiser des programmes annuels ou périodiques en blocs logiques, intégrés dans un espace de travail numérique.<br><br><u>Avantages</u> :<ul><li>Visuel</li><li>Organisé</li></ul><br><u>Inconvénients</u> :<ul><li>Moins ciblé éducation</li></ul><br><u>Conseil</u> : Utiliser les modèles éducatifs proposés comme point de départ.",
-                    link: "https://www.notion.so/product/ai"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Flexible",
+                        "Adaptable à tous niveaux"
+                    ],
+                    inconvenients: [
+                        "Peut produire une structure incohérente sans indications précises"
+                    ],
+                    conseil: "Fournir des contraintes précises (ex. durée, discipline, objectifs)"
                 }
             ],
             "Planifier une leçon": [
                 {
-                    text: "<strong>ChatGPT</strong> permet de créer des plans de leçon de base, en générant un déroulé pédagogique clair et structuré.<br><br><em>Exemple de prompt :</em><br>\"Proposer un plan de leçon sur les <strong>différents états de l'eau</strong> pour une classe de CE2, structuré avec : titre, objectif, matériel, étapes de la séance, évaluation.\"<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Souple</li><li>Interface disponible en français</li><li>Personnalisable selon les besoins</li></ul><br><u>Inconvénients</u> :<ul><li>Qualité variable selon la formulation du prompt</li><li>Informations à vérifier</li></ul><br><u>Conseil</u> : Utiliser un format structuré (ex. : titre – objectif – activité – évaluation).",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Souple",
+                        "Interface disponible en français",
+                        "Personnalisable selon les besoins"
+                    ],
+                    inconvenients: [
+                        "Qualité variable selon la formulation du prompt",
+                        "Informations à vérifier"
+                    ],
+                    conseil: "Utiliser un format structuré (ex. : titre – objectif – activité – évaluation)"
                 },
                 {
-                    text: "<strong>Eduaide</strong> génère des plans de leçons avec objectifs, activités et évaluations, selon le niveau choisi.<br><br><u>Avantages</u> :<ul><li>Structuré</li><li>Pensé pour les enseignants</li></ul><br><u>Inconvénients</u> :<ul><li>En anglais</li></ul><br><u>Conseil</u> : Sois précis sur le niveau et les objectifs dans ta demande.",
-                    link: "https://eduaide.ai"
+                    name: "Eduaide",
+                    link: "https://eduaide.ai",
+                    badge: {
+                        prix: "Freemium : 4$ par mois",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Structuré",
+                        "Pensé pour les enseignants"
+                    ],
+                    inconvenients: [
+                        "En anglais"
+                    ],
+                    conseil: "Être précis sur le niveau et les objectifs dans ta demande"
                 },
                 {
-                    text: "<strong>MagicSchool</strong> propose des modèles de leçons clés en main générés par IA pour différents niveaux scolaires.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><ul><li>Spécialisé éducation</li><li>Plusieurs formats disponibles</li></ul><br><u>Inconvénients</u> :<ul><li>Nécessite un compte</li><li>Interface anglaise</li></ul><br><u>Conseil</u> : Adapter la leçon proposée au contexte belge francophone.",
-                    link: "https://www.magicschool.ai"
-                }
-            ],
-            "Planifier un horaire": [
-                {
-                    text: "<strong>TimeHero</strong> aide à répartir automatiquement les tâches dans un calendrier personnel, en fonction des contraintes.<br><br><u>Avantages</u> :<ul><li>Gain de temps</li><li>Vue hebdomadaire efficace</li></ul><br><u>Inconvénients</u> :<ul><li>Pas conçu pour les emplois du temps scolaires complexes</li></ul><br><u>Conseil</u> : À utiliser pour organiser ton travail personnel, pas les horaires officiels de cours.",
-                    link: "https://www.timehero.com"
-                },
-                {
-                    text: "<strong>ChatGPT</strong> peut générer une proposition d'emploi du temps en tenant compte de tes contraintes (heures, pauses, matières, etc).<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Adaptable</li></ul><br><u>Inconvénients</u> :<ul><li>Nécessite une vérification manuelle de faisabilité</li></ul><br><u>Conseil</u> : Énumère toutes les contraintes clairement dans ta demande.",
-                    link: "https://chat.openai.com"
+                    name: "MagicSchool",
+                    link: "https://www.magicschool.ai",
+                    badge: {
+                        prix: "Freemium : 100$ par an",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées",
+                        "Spécialisé éducation",
+                        "Plusieurs formats disponibles"
+                    ],
+                    inconvenients: [
+                        "Nécessite un compte",
+                        "Interface anglaise"
+                    ],
+                    conseil: "Adapter la leçon proposée au contexte belge francophone"
                 }
             ],
             "Créer des exercices": [
                 {
-                    text: "<strong>Diffit</strong> génère des exercices adaptés à différents niveaux à partir d’un même contenu ou texte.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec limites de génération ; version pro à partir de 9 $/mois</li><ul><li>Idéal pour la différenciation</li><li>Facile à utiliser</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Peut nécessiter adaptation au programme</li></ul><br><u>Conseil</u> : Utilise un texte source en français pour de meilleurs résultats.",
-                    link: "https://www.diffit.me"
+                    name: "Diffit",
+                    link: "https://www.diffit.me",
+                    badge: {
+                        prix: "Gratuit",
+                        langue: "Multilingue"
+                    },
+                    text: "Diffit permet de générer automatiquement des exercices à partir d’un texte source, ce qui facilite la création d’activités différenciées à partir de contenus existants. Il est particulièrement utile pour adapter des textes selon différents niveaux de difficulté.",
+                    avantages: [
+                        "Très pratique pour créer rapidement des exercices à partir d’un même support texte",
+                        "Permet de différencier les niveaux de difficulté automatiquement",
+                        "Propose différents types d’activités (QCM, texte à trous, questions ouvertes)"
+                    ],
+                    inconvenients: [
+                        "Les types d’exercices sont parfois limités",
+                        "Le contenu généré nécessite une relecture pour vérifier la pertinence pédagogique",
+                        "Interface principalement en anglais, ce qui peut gêner l’édition fine en français"
+                    ],
+                    conseil: "Préférer l'utilisation de textes sources en français pour obtenir de meilleurs résultats, puis ajuster les consignes si nécessaire."
                 },
                 {
-                    text: "<strong>ChatGPT</strong> permet de créer des exercices variés (QCM, Vrai/Faux, lacunes, questions ouvertes…) selon le niveau de l’élève.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Très souple</li><li>Multilingue</li></ul><br><u>Inconvénients</u> :<ul><li>Nécessite relecture pour valider pédagogiquement</li></ul><br><u>Conseil</u> : Spécifie bien le niveau et le type d’exercice attendu.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    text: "ChatGPT peut générer une large variété d’exercices (QCM, textes à trous, questions ouvertes, etc.) à partir d’une simple consigne. Il est très utile pour créer des exercices sur mesure en fonction d’un thème, d’un niveau ou d’un objectif pédagogique.",
+                    avantages: [
+                        "Génération rapide d’exercices sur demande, avec beaucoup de flexibilité",
+                        "Peut s’adapter à tous niveaux et toutes disciplines",
+                        "Permet de personnaliser finement les consignes et les formats"
+                    ],
+                    inconvenients: [
+                        "Risque de consignes floues ou de formulations peu claires si le prompt est vague",
+                        "Nécessite une relecture attentive pour vérifier l’adéquation avec les objectifs pédagogiques",
+                        "Peut produire des erreurs ou des approximations dans les contenus"
+                    ],
+                    conseil: "Indiquer clairement le niveau, le thème, le type d’exercice et, si nécessaire, la structure attendue pour optimiser la qualité des résultats."
                 }
+
             ],
             "Créer des fiches": [
                 {
-                    text: "<strong>MagicSchool</strong> permet de générer des fiches pédagogiques complètes selon le niveau et les objectifs définis.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><ul><li>Structuré et pensé pour l’école</li></ul><br><u>Inconvénients</u> :<ul><li>En anglais</li><li>Besoin de compte utilisateur</li></ul><br><u>Conseil</u> : Traduis et adapte les contenus proposés à ton public.",
-                    link: "https://www.magicschool.ai"
+                    name: "MagicSchool",
+                    link: "https://www.magicschool.ai",
+                    badge: {
+                        prix: "Freemium : 100$ par an",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)",
+                        "Structuré et pensé pour l’école"
+                    ],
+                    inconvenients: [
+                        "En anglais",
+                        "Besoin de compte utilisateur"
+                    ],
+                    conseil: "Traduis et adapte les contenus proposés à ton public"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> peut générer des fiches de cours explicatives, synthétiques ou illustrées selon les demandes.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Personnalisable</li><li>Souple</li></ul><br><u>Inconvénients</u> :<ul><li>Qualité variable</li></ul><br><u>Conseil</u> : Demande une structure claire avec titres, exemples et résumés.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Personnalisable",
+                        "Souple"
+                    ],
+                    inconvenients: [
+                        "Qualité variable"
+                    ],
+                    conseil: "Demande une structure claire avec titres, exemples et résumés"
                 },
                 {
-                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
-                    link: "https://notebooklm.google"
+                    name: "NotebookLM",
+                    link: "https://notebooklm.google",
+                    badge: {
+                        prix: "Freemium : Prix variable",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium, accès gratuit très complet (accès via compte Google)",
+                        "Analyse profonde de contenus personnels",
+                        "Facilite la révision ou l’exploration de sources"
+                    ],
+                    inconvenients: [
+                        "Encore en développement",
+                        "Limité à certains formats"
+                    ],
+                    conseil: "Idéal pour créer des synthèses ou préparer une intervention pédagogique à partir de documents personnels"
                 }
             ],
             "Créer des visuels": [
                 {
-                    text: "<strong>Canva + IA</strong> permet de générer des schémas, affiches, infographies ou cartes mentales à partir d’instructions simples.<br><br><u>Avantages</u> :<ul><li>Interface intuitive</li><li>Nombreux modèles éducatifs</li></ul><br><u>Inconvénients</u> :<ul><li>Fonctionnalités IA limitées en version gratuite</li></ul><br><u>Conseil</u> : Utilise les templates d’éducation pour gagner du temps.",
-                    link: "https://www.canva.com"
+                    name: "Canva + IA",
+                    link: "https://www.canva.com",
+                    badge: {
+                        prix: "Freemium : 9 à 12$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Interface intuitive",
+                        "Nombreux modèles éducatifs"
+                    ],
+                    inconvenients: [
+                        "Fonctionnalités IA limitées en version gratuite"
+                    ],
+                    conseil: "Utilise les templates d’éducation pour gagner du temps"
                 },
                 {
-                    text: "<strong>DALL·E</strong> génère des illustrations originales à partir de descriptions textuelles.<br><br><u>Avantages</u> :<ul><li>Créatif</li><li>Adapté pour représenter des concepts abstraits</li></ul><br><u>Inconvénients</u> :<ul><li>Moins pertinent pour des schémas rigoureux</li></ul><br><u>Conseil</u> : Précise bien les couleurs, formes et objets à faire apparaître.",
-                    link: "https://openai.com/dall-e"
+                    name: "DALL·E",
+                    link: "https://openai.com/dall-e",
+                    badge: {
+                        prix: "Payant : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Créatif",
+                        "Adapté pour représenter des concepts abstraits"
+                    ],
+                    inconvenients: [
+                        "Moins pertinent pour des schémas rigoureux"
+                    ],
+                    conseil: "Précise bien les couleurs, formes et objets à faire apparaître"
                 }
             ],
             "Créer des quiz": [
                 {
-                    text: "<strong>Quizizz AI</strong> crée automatiquement des quiz interactifs à partir de documents ou de thèmes.<br><br><u>Avantages</u> :<ul><li>Ludique</li><li>Idéal pour l’évaluation formative</li></ul><br><u>Inconvénients</u> :<ul><li>Anglais par défaut</li><li>Questions parfois trop générales</li></ul><br><u>Conseil</u> : Relis et adapte chaque question avant diffusion.",
-                    link: "https://quizizz.com"
+                    name: "Quizizz AI",
+                    link: "https://quizizz.com",
+                    badge: {
+                        prix: "Freemium : Prix variable",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Ludique",
+                        "Idéal pour l’évaluation formative"
+                    ],
+                    inconvenients: [
+                        "Questions parfois trop générales"
+                    ],
+                    conseil: "Relis et adapte chaque question avant diffusion"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> peut générer des quiz QCM, Vrai/Faux ou à réponse ouverte en quelques secondes.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Rapide</li><li>Adaptable au niveau et au sujet</li></ul><br><u>Inconvénients</u> :<ul><li>Peut générer des ambiguïtés</li></ul><br><u>Conseil</u> : Demander les réponses et justifications avec chaque question.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Rapide",
+                        "Adaptable au niveau et au sujet"
+                    ],
+                    inconvenients: [
+                        "Peut générer des ambiguïtés"
+                    ],
+                    conseil: "Demander les réponses et justifications avec chaque question"
                 },
                 {
-                    text: "<strong>Quizlet</strong> propose la création automatique de flashcards et de quiz à partir de contenus ou de documents grâce à son IA intégrée.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec fonctions de base ; version payante (à partir de 35 €/an) pour les fonctionnalités avancées</li><li>Idéal pour la mémorisation active</li><li>Utilisable par les élèves</li></ul><br><u>Inconvénients</u> :<ul><li>Moins adapté à l’évaluation approfondie</li></ul><br><u>Conseil</u> : Privilégier pour les révisions, en complément d’autres formats d’évaluation.",
-                    link: "https://quizlet.com"
+                    name: "Quizlet",
+                    link: "https://quizlet.com",
+                    badge: {
+                        prix: "Gratuit",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec fonctions de base ; version payante (à partir de 35 €/an) pour les fonctionnalités avancées",
+                        "Idéal pour la mémorisation active",
+                        "Utilisable par les élèves"
+                    ],
+                    inconvenients: [
+                        "Moins adapté à l’évaluation approfondie"
+                    ],
+                    conseil: "Privilégier pour les révisions, en complément d’autres formats d’évaluation"
                 }
             ],
             "Enseigner": [
                 {
-                    text: "<strong>Explainpaper</strong> permet de simplifier des passages complexes d'articles scientifiques ou techniques pour mieux préparer une explication orale.<br><br><u>Avantages</u> :<ul><li>Permet de clarifier rapidement des concepts</li><li>Gain de temps</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Moins pertinent pour des niveaux jeunes</li></ul><br><u>Conseil</u> : À utiliser pour reformuler des textes difficiles en langage accessible.",
-                    link: "https://www.explainpaper.com"
+                    name: "Explainpaper",
+                    link: "https://www.explainpaper.com",
+                    badge: {
+                        prix: "Freemium : 12 à 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Permet de clarifier rapidement des concepts",
+                        "Gain de temps"
+                    ],
+                    inconvenients: [
+                        "Moins pertinent pour des niveaux jeunes"
+                    ],
+                    conseil: "À utiliser pour reformuler des textes difficiles en langage accessible"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> peut jouer un rôle d'assistant pédagogique pour simuler des dialogues, expliquer des notions ou préparer des exposés.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Disponible en français</li><li>Personnalisable</li></ul><br><u>Inconvénients</u> :<ul><li>Peut contenir des erreurs si non vérifié</li></ul><br><u>Conseil</u> : Préparer les dialogues à l’avance et relire les suggestions avant usage.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Gratuit",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Disponible en français",
+                        "Personnalisable"
+                    ],
+                    inconvenients: [
+                        "Peut contenir des erreurs si non vérifié"
+                    ],
+                    conseil: "Préparer les dialogues à l’avance et relire les suggestions avant usage"
                 }
             ],
             "Interagir": [
                 {
-                    text: "<strong>Khanmigo</strong> propose un système d’assistance pédagogique individualisée aux élèves via un chatbot intégré à des contenus scolaires.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><ul><li>Favorise l’autonomie</li><li>Interaction directe avec les contenus</li></ul><br><u>Inconvénients</u> :<ul><li>Disponible uniquement en anglais</li></ul><br><u>Conseil</u> : À réserver à des séances d’entraînement ou de révision personnalisée.",
-                    link: "https://www.khanacademy.org/khan-labs"
+                    name: "Khanmigo",
+                    link: "https://www.khanacademy.org/khan-labs",
+                    badge: {
+                        prix: "Gratuit (mais indisponible en Belgique)",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Gratuit dans certaines régions",
+                        "Favorise l’autonomie",
+                        "Interaction directe avec les contenus"
+                    ],
+                    inconvenients: [
+                        "Disponible uniquement en anglais",
+                        "Indisponible en Belgique"
+                    ],
+                    conseil: "À réserver à des séances d’entraînement ou de révision personnalisée"
                 },
                 {
-                    text: "<strong>Parlay Genie</strong> génère des questions ouvertes pour stimuler des discussions en classe.<br><br><u>Avantages</u> :<ul><li>Favorise la pensée critique</li><li>Facile à utiliser</li></ul><br><u>Inconvénients</u> :<ul><li>Interface en anglais</li><li>Contenu parfois générique</li></ul><br><u>Conseil</u> : Traduire et adapter les questions aux objectifs pédagogiques visés.",
-                    link: "https://parlayideas.com/genie"
+                    name: "Parlay Genie",
+                    link: "https://parlayideas.com/genie",
+                    badge: {
+                        prix: "Freemium : 10$ par mois",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Favorise la pensée critique",
+                        "Facile à utiliser"
+                    ],
+                    inconvenients: [
+                        "Interface en anglais",
+                        "Contenu parfois générique"
+                    ],
+                    conseil: "Traduire et adapter les questions aux objectifs pédagogiques visés"
                 }
             ],
             "Gérer une classe": [
                 {
-                    text: "<strong>MagicSchool (gestion de classe)</strong> propose des idées et des stratégies concrètes pour gérer des situations courantes en classe à l’aide de l’IA.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><ul><li>Prépare à différents scénarios</li></ul><br><u>Inconvénients</u> :<ul><li>Peu contextualisé à certaines réalités locales</li></ul><br><u>Conseil</u> : Utiliser les suggestions comme base de réflexion, et ajuster selon le contexte.",
-                    link: "https://www.magicschool.ai"
+                    name: "MagicSchool (gestion de classe)",
+                    link: "https://www.magicschool.ai",
+                    badge: {
+                        prix: "Freemium : 100$ par an",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées",
+                        "Prépare à différents scénarios"
+                    ],
+                    inconvenients: [
+                        "Peu contextualisé à certaines réalités locales"
+                    ],
+                    conseil: "Utiliser les suggestions comme base de réflexion, et ajuster selon le contexte"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> permet de simuler des cas de gestion de classe et de proposer des réponses pédagogiques adaptées.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Utile pour la préparation</li><li>Permet d’anticiper des imprévus</li></ul><br><u>Inconvénients</u> :<ul><li>Reste une simulation virtuelle</li></ul><br><u>Conseil</u> : Décrire précisément le contexte pour des suggestions plus pertinentes.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Utile pour la préparation",
+                        "Permet d’anticiper des imprévus"
+                    ],
+                    inconvenients: [
+                        "Reste une simulation virtuelle"
+                    ],
+                    conseil: "Décrire précisément le contexte pour des suggestions plus pertinentes"
                 }
             ],
             "Observer": [
                 {
-                    text: "<strong>TeachFX</strong> analyse l’interaction verbale en classe et identifie les temps de parole enseignant/élèves pour favoriser une pédagogie plus participative.<br><br><u>Avantages</u> :<ul><li>Basé sur des données réelles</li><li>Utile pour auto-évaluation</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Enregistrements requis</li><li>Peut poser des questions de protection des données</li></ul><br><u>Conseil</u> : À utiliser ponctuellement pour documenter une pratique et ajuster l’équilibre des interactions.",
-                    link: "https://teachfx.com"
+                    name: "TeachFX",
+                    link: "https://teachfx.com",
+                    badge: {
+                        prix: "Payant : Prix variable",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Basé sur des données réelles",
+                        "Utile pour auto-évaluation"
+                    ],
+                    inconvenients: [
+                        "Anglophone",
+                        "Enregistrements requis",
+                        "Peut poser des questions de protection des données"
+                    ],
+                    conseil: "À utiliser ponctuellement pour documenter une pratique et ajuster l’équilibre des interactions"
                 },
                 {
-                    text: "<strong>Class Analytics (LMS)</strong> fournit des tableaux de bord d’engagement des élèves à partir de plateformes numériques éducatives.<br><br><u>Avantages</u> :<ul><li>Automatisé</li><li>Facilite le repérage des décrocheurs</li></ul><br><u>Inconvénients</u> :<ul><li>Dépend de la plateforme utilisée</li><li>Peu d'analyse qualitative</li></ul><br><u>Conseil</u> : À croiser avec des observations humaines.",
-                    link: "https://support.google.com/edu/classroom"
+                    name: "Class Analytics (Google Classroom)",
+                    link: "https://classroom.google.com/",
+                    badge: {
+                        prix: "Payant : 5$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Automatisé",
+                        "Facilite le repérage des décrocheurs"
+                    ],
+                    inconvenients: [
+                        "Nécessite la version Workspace for Education Plus (5$ par mois)",
+                        "Peu d'analyse qualitative"
+                    ],
+                    conseil: "À croiser avec des observations humaines"
                 }
             ],
             "Analyser les erreurs": [
                 {
-                    text: "<strong>Gradescope</strong> est une plateforme de correction qui regroupe les erreurs fréquentes et les classe automatiquement pour faciliter les retours collectifs.<br><br><u>Avantages</u> :<ul><li>Généralement sous licence établissement (prix sur demande)</li><ul><li>Gain de temps</li><li>Cohérence de correction</li></ul><br><u>Inconvénients</u> :<ul><li>Moins adapté aux disciplines littéraires</li><li>En anglais</li></ul><br><u>Conseil</u> : Utiliser avec des évaluations structurées (QCM ou courtes réponses).",
-                    link: "https://www.gradescope.com"
+                    name: "Gradescope",
+                    link: "https://www.gradescope.com",
+                    badge: {
+                        prix: "Prix personnalisé",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Généralement sous licence établissement (prix sur demande)",
+                        "Gain de temps",
+                        "Cohérence de correction"
+                    ],
+                    inconvenients: [
+                        "Moins adapté aux disciplines littéraires",
+                        "En anglais"
+                    ],
+                    conseil: "Utiliser avec des évaluations structurées (QCM ou courtes réponses)"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> permet d’analyser plusieurs réponses d’élèves pour identifier les erreurs récurrentes et proposer des pistes de remédiation.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><ul><li>Souple</li><li>Francophone</li></ul><br><u>Inconvénients</u> :<ul><li>Manque de finesse sur certaines disciplines</li></ul><br><u>Conseil</u> : Fournir plusieurs exemples de réponses pour améliorer la qualité de l’analyse.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec accès à GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Souple",
+                        "Disponible en français"
+                    ],
+                    inconvenients: [
+                        "Manque de finesse sur certaines disciplines"
+                    ],
+                    conseil: "Fournir plusieurs exemples de réponses pour améliorer la qualité de l’analyse"
                 }
             ],
             "Accompagner": [
                 {
-                    text: "<strong>Khanmigo</strong> offre un accompagnement interactif et personnalisé pour les élèves en autonomie, avec explications et soutien étape par étape.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><ul><li>Personnalisé</li><li>Favorise l'autonomie</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Nécessite un compte</li></ul><br><u>Conseil</u> : À recommander pour les révisions ou en appui différencié.",
-                    link: "https://www.khanacademy.org/khan-labs"
+                    name: "Khanmigo",
+                    link: "https://www.khanacademy.org/khan-labs",
+                    badge: {
+                        prix: "Gratuit (mais indisponible en Belgique)",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Actuellement gratuit pour certains pays grâce à Microsoft",
+                        "Personnalisé",
+                        "Favorise l'autonomie"
+                    ],
+                    inconvenients: [
+                        "Anglophone",
+                        "Indisponible dans certains pays comme la Belgique"
+                    ],
+                    conseil: "À recommander pour les révisions ou en appui différencié"
                 },
                 {
-                    text: "<strong>Socratic by Google</strong> permet aux élèves de scanner un exercice ou poser une question pour obtenir une aide pas à pas avec des ressources en ligne.<br><br><u>Avantages</u> :<ul><li>Visuel</li><li>Intuitif</li></ul><br><u>Inconvénients</u> :<ul><li>Pas conçu pour le suivi collectif</li></ul><br><u>Conseil</u> : Peut être proposé comme assistant d’étude autonome.",
-                    link: "https://socratic.org"
+                    name: "Socratic by Google",
+                    link: "https://socratic.org",
+                    badge: {
+                        prix: "Gratuit",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Visuel",
+                        "Intuitif"
+                    ],
+                    inconvenients: [
+                        "Pas conçu pour le suivi collectif"
+                    ],
+                    conseil: "Peut être proposé comme assistant d’étude autonome"
                 }
             ],
             "Se former": [
                 {
-                    text: "<strong>NotebookLM</strong> est un assistant de lecture de documents qui permet de poser des questions directement sur ses propres notes, PDF ou textes téléchargés.<br><br><u>Avantages</u> :<ul><li>Gratuit (accès via compte Google)</li><ul><li>Analyse profonde de contenus personnels</li><li>Facilite la révision ou l’exploration de sources</li></ul><br><u>Inconvénients</u> :<ul><li>Encore en développement</li><li>Limité à certains formats</li></ul><br><u>Conseil</u> : Idéal pour créer des synthèses ou préparer une intervention pédagogique à partir de documents personnels.",
-                    link: "https://notebooklm.google"
+                    name: "NotebookLM",
+                    link: "https://notebooklm.google",
+                    badge: {
+                        prix: "Freemium : Prix variable",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium, accès gratuit très complet (accès via compte Google)",
+                        "Analyse profonde de contenus personnels",
+                        "Facilite la révision ou l’exploration de sources"
+                    ],
+                    inconvenients: [
+                        "Encore en développement",
+                        "Limité à certains formats"
+                    ],
+                    conseil: "Idéal pour créer des synthèses ou préparer une intervention pédagogique à partir de documents personnels"
                 },
                 {
-                    text: "<strong>Perplexity AI</strong> permet d’effectuer une veille pédagogique ou disciplinaire en interrogeant des sources fiables de manière synthétique.<br><br><u>Avantages</u> :<ul><li>Gratuit avec options avancées payantes (Perplexity Pro : 20 $/mois)</li><ul><li>Réponses sourcées</li><li>Gain de temps</li></ul><br><u>Inconvénients</u> :<ul><li>Parfois trop synthétique</li></ul><br><u>Conseil</u> : Préférer des requêtes ciblées pour des résultats plus précis.",
-                    link: "https://www.perplexity.ai"
+                    name: "Perplexity AI",
+                    link: "https://www.perplexity.ai",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Gratuit avec options avancées payantes (Perplexity Pro : 20 $/mois)",
+                        "Réponses sourcées",
+                        "Gain de temps"
+                    ],
+                    inconvenients: [
+                        "Parfois trop synthétique"
+                    ],
+                    conseil: "Préférer des requêtes ciblées pour des résultats plus précis"
                 },
                 {
-                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
-                    link: "https://notebooklm.google"
+                    name: "NotebookLM",
+                    link: "https://notebooklm.google",
+                    badge: {
+                        prix: "Freemium : Prix variable",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Version gratuite très complète",
+                        "Adapté aux documents personnels",
+                        "Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts"
+                    ],
+                    inconvenients: [
+                        "Limité à certains formats (PDF, texte brut)",
+                        "Encore en phase expérimentale"
+                    ],
+                    conseil: "Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires"
                 }
             ],
             "Adapter les exercices": [
                 {
-                    text: "<strong>NotebookLM</strong> est un assistant IA permettant d’interroger ses propres documents (PDF, notes, textes) pour en extraire des synthèses, résumés, scripts ou idées-clés.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Adapté aux documents personnels</li><li>Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts</li></ul><br><u>Inconvénients</u> :<ul><li>Limité à certains formats (PDF, texte brut)</li><li>Encore en phase expérimentale</li></ul><br><u>Conseil</u> : Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires.",
-                    link: "https://notebooklm.google"
+                    name: "NotebookLM",
+                    link: "https://notebooklm.google",
+                    badge: {
+                        prix: "Freemium : Prix variable",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Version gratuite très complète",
+                        "Adapté aux documents personnels",
+                        "Utile pour synthétiser des articles scientifiques, créer des fiches ou scripts de podcasts"
+                    ],
+                    inconvenients: [
+                        "Limité à certains formats (PDF, texte brut)",
+                        "Encore en phase expérimentale"
+                    ],
+                    conseil: "Peut être utilisé pour produire un résumé audio (avec IA vocale) ou pour adapter un texte à différents niveaux scolaires"
                 }
             ],
             "Créer des évaluations": [
                 {
-                    text: "<strong>ChatGPT</strong> permet de générer rapidement des évaluations variées (QCM, Vrai/Faux, réponses ouvertes) à partir d’un thème donné.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite avec GPT-3.5 ; version payante (20 $/mois) pour GPT-4</li><li>Rapide</li><li>Personnalisable</li></ul><br><u>Inconvénients</u> :<ul><li>Qualité variable</li><li>À relire avec rigueur</li></ul><br><u>Conseil</u> : Demander également un barème associé à chaque question.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite avec GPT-3.5 ; version payante (20 $/mois) pour GPT-4",
+                        "Rapide",
+                        "Personnalisable"
+                    ],
+                    inconvenients: [
+                        "Qualité variable",
+                        "À relire avec rigueur"
+                    ],
+                    conseil: "Demander également un barème associé à chaque question"
                 },
                 {
-                    text: "<strong>MagicSchool</strong> propose des générateurs d’évaluations pour différentes matières et niveaux, avec des options IA.<br><br><u>Avantages</u> :<ul><li>Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées (5 $ à 10 $/mois)</li><li>Structuré pour l’école</li></ul><br><u>Inconvénients</u> :<ul><li>Interface anglophone</li><li>Besoin de compte</li></ul><br><u>Conseil</u> : Utiliser comme base puis adapter le contenu.",
-                    link: "https://www.magicschool.ai"
+                    name: "MagicSchool",
+                    link: "https://www.magicschool.ai",
+                    badge: {
+                        prix: "Freemium : 100$ par an",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Freemium : version gratuite limitée ; version payante avec fonctionnalités avancées",
+                        "Structuré pour l’école"
+                    ],
+                    inconvenients: [
+                        "Interface anglophone",
+                        "Besoin de compte"
+                    ],
+                    conseil: "Utiliser comme base puis adapter le contenu"
                 }
             ],
             "Corriger des évaluations": [
                 {
-                    text: "<strong>Gradescope</strong> corrige automatiquement des copies en ligne, identifie les erreurs fréquentes et facilite les annotations répétées.<br><br><u>Avantages</u> :<ul><li>Généralement sous licence établissement (prix sur demande)</li><li>Gain de temps</li><li>Cohérence</li></ul><br><u>Inconvénients</u> :<ul><li>Moins pertinent pour les disciplines longues ou créatives</li></ul><br><u>Conseil</u> : Structurer les évaluations pour optimiser l’analyse automatisée.",
-                    link: "https://www.gradescope.com"
+                    name: "Gradescope",
+                    link: "https://www.gradescope.com",
+                    badge: {
+                        prix: "Prix personnalisé",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Généralement sous licence établissement (prix sur demande)",
+                        "Gain de temps",
+                        "Essai gratuit"
+                    ],
+                    inconvenients: [
+                        "Moins pertinent pour les disciplines longues ou créatives"
+                    ],
+                    conseil: "Structurer les évaluations pour optimiser l’analyse automatisée"
                 },
                 {
-                    text: "<strong>ChatGPT</strong> peut analyser une réponse et proposer une note ainsi qu’un commentaire de correction, si un barème est fourni.<br><br><u>Avantages</u> :<ul><li>Freemium : accès gratuit à GPT-3.5 ; accès à GPT-4 avec abonnement</li><li>Souple</li><li>Francophone</li></ul><br><u>Inconvénients</u> :<ul><li>Analyse parfois simpliste</li></ul><br><u>Conseil</u> : Préciser les critères d’évaluation dans la consigne.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Gratuit",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : accès gratuit à GPT-3.5 ; accès à GPT-4 avec abonnement",
+                        "Souple",
+                        "Disponible en français"
+                    ],
+                    inconvenients: [
+                        "Analyse parfois simpliste"
+                    ],
+                    conseil: "Préciser les critères d’évaluation dans la consigne"
                 }
             ],
             "Feedback": [
                 {
-                    text: "<strong>ChatGPT</strong> peut générer des retours détaillés, encourageants ou constructifs à partir d’un travail écrit ou d’une production.<br><br><u>Avantages</u> :<ul><li>Freemium : accès gratuit à GPT-3.5 ; version premium à 20 $/mois</li><li>Rapide</li><li>Ton personnalisable</li></ul><br><u>Inconvénients</u> :<ul><li>Relecture indispensable</li></ul><br><u>Conseil</u> : Définir le niveau de détail et le ton du feedback attendu.",
-                    link: "https://chat.openai.com"
+                    name: "ChatGPT",
+                    link: "https://chat.openai.com",
+                    badge: {
+                        prix: "Freemium : 20$ par mois",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Freemium : accès gratuit à GPT-3.5 ; version premium à 20 $/mois",
+                        "Rapide",
+                        "Ton personnalisable"
+                    ],
+                    inconvenients: [
+                        "Relecture indispensable"
+                    ],
+                    conseil: "Définir le niveau de détail et le ton du feedback attendu"
                 },
                 {
-                    text: "<strong>Writable</strong> fournit un retour automatisé sur des écrits d’élèves en anglais, avec des recommandations ciblées.<br><br><u>Avantages</u> :<ul><li>Freemium : usage de base gratuit, forfaits payants pour plus d’analyses</li><li>Ciblé sur la rédaction</li></ul><br><u>Inconvénients</u> :<ul><li>Anglophone</li><li>Moins utile en francophonie</li></ul><br><u>Conseil</u> : Convient mieux pour les cours de langue ou contexte bilingue.",
-                    link: "https://www.writable.com"
+                    name: "Writable",
+                    link: "https://www.writable.com",
+                    badge: {
+                        prix: "Freemium : 1$ par mois par étudiant",
+                        langue: "Anglais"
+                    },
+                    avantages: [
+                        "Freemium : usage de base gratuit, forfaits payants pour plus d’analyses",
+                        "Ciblé sur la rédaction"
+                    ],
+                    inconvenients: [
+                        "Anglophone",
+                        "Payant pour avoir tous les usages"
+                    ],
+                    conseil: "Convient mieux pour les cours de langue ou contexte bilingue"
                 }
             ],
             "Soutien": [
                 {
-                    text: "<strong>Khanmigo</strong> propose un accompagnement guidé à l’élève pour comprendre pas à pas un concept, avec des explications ciblées.<br><br><u>Avantages</u> :<ul><li>Payant : environ 10 $/mois, accès limité selon région</li><li>Autonomie</li><li>Renforcement des prérequis</li></ul><br><u>Inconvénients</u> :<ul><li>Anglais</li></ul><br><u>Conseil</u> : Recommandé en travail différencié ou en tutorat numérique.",
-                    link: "https://www.khanacademy.org/khan-labs"
+                    name: "Khanmigo",
+                    link: "https://www.khanacademy.org/khan-labs",
+                    badge: {
+                        prix: "Gratuit (mais indisponible en Belgique)",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Gratuit pour certains pays",
+                        "Autonomie",
+                        "Renforcement des prérequis"
+                    ],
+                    inconvenients: [
+                        "Indisponible dans certains pays tels que la Belgique"
+                    ],
+                    conseil: "Recommandé en travail différencié ou en tutorat numérique"
                 },
                 {
-                    text: "<strong>Socratic by Google</strong> permet à l’élève de poser une question ou prendre en photo un exercice pour obtenir des aides et explications visuelles.<br><br><u>Avantages</u> :<ul><li>Gratuit</li><li>Pratique pour les devoirs</li><li>Simple à utiliser</li></ul><br><u>Inconvénients</u> :<ul><li>Moins pertinent pour le suivi collectif</li></ul><br><u>Conseil</u> : Peut être recommandé comme outil d’étude personnelle.",
-                    link: "https://socratic.org"
-                }
-            ],
-            "Echanger": [
-                {
-                    text: "<strong>ChatGPT</strong> peut aider à rédiger des messages professionnels, simuler des échanges entre collègues ou formuler des idées à partager.<br><br><u>Avantages</u> :<ul><li>Freemium : accès de base gratuit ; version GPT-4 à 20 $/mois</li><li>Disponible à tout moment</li><li>Souple</li></ul><br><u>Inconvénients</u> :<ul><li>Ne remplace pas un dialogue humain</li></ul><br><u>Conseil</u> : Peut servir de support avant une réunion ou une prise de parole.",
-                    link: "https://chat.openai.com"
-                },
-                {
-                    text: "<strong>Poe</strong> permet de discuter avec plusieurs IA (Claude, GPT, etc.) dans une interface unifiée, utile pour explorer des idées, tester des formulations ou générer des textes à plusieurs styles.<br><br><u>Avantages</u> :<ul><li>Freemium : accès gratuit avec limitations, abonnement pour options illimitées</li><li>Accès à plusieurs IA dans un même espace</li></ul><br><u>Inconvénients</u> :<ul><li>Pas spécifiquement éducatif</li></ul><br><u>Conseil</u> : Peut servir à comparer des résultats entre plusieurs IA ou reformuler un contenu sous différents angles.",
-                    link: "https://poe.com"
+                    name: "Socratic by Google",
+                    link: "https://socratic.org",
+                    badge: {
+                        prix: "Gratuit",
+                        langue: "Multilingue"
+                    },
+                    avantages: [
+                        "Gratuit",
+                        "Pratique pour les devoirs",
+                        "Simple à utiliser"
+                    ],
+                    inconvenients: [
+                        "Moins pertinent pour le suivi collectif"
+                    ],
+                    conseil: "Peut être recommandé comme outil d’étude personnelle"
                 }
             ]
         }
@@ -469,16 +1019,67 @@
         }
 
         function showDetails(title) {
-            const container = document.getElementById('details-container')
+            const detailsContainer = document.getElementById('details-container')
+            detailsContainer.innerHTML = ''
+
             if (detailsText[title]) {
-                container.innerHTML = `<h3 class='text-2xl font-bold text-primary mb-4'>${title}</h3>`
-                detailsText[title].forEach(item => {
-                    container.innerHTML += `<p class='text-gray-700'>${item.text}</p><a href='${item.link}' target='_blank' class='inline-block mt-2 mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition'>Ouvrir</a><hr class='my-4'>`
-                })
-            } else {
-                container.innerHTML = `<h3 class='text-2xl font-bold text-primary mb-4'>${title}</h3><p class='text-gray-600'>Contenu à venir...</p>`
+                detailsContainer.innerHTML = `
+                <h3 class='text-2xl font-bold mb-6 text-primary'>${title}</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                  ${detailsText[title].map(({ name, link, badge, avantages, inconvenients, conseil, text }) => `
+                    <div class="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition duration-300 space-y-4" data-aos="fade-up">
+                      <div class="flex items-center justify-between">
+                        <h4 class="text-xl font-bold text-primary">${name}</h4>
+                        <a href="${link}" target="_blank" class="bg-primary text-white text-xs px-3 py-1 rounded hover:bg-indigo-600 transition">Découvrir</a>
+                      </div>
+                      <div class="flex flex-wrap gap-2">
+                        <span class="flex items-center gap-1 text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full">
+                          <img src="https://flagcdn.com/h20/${badge.langue.toLowerCase().includes('mul') ? 'fr' : badge.langue.toLowerCase().includes('an') ? 'gb' : 'us'}.png" class="h-3"> ${badge.langue}
+                        </span>
+                        <span class="flex items-center gap-1 text-xs ${badge.prix.includes('Gratuit') ? 'bg-green-100 text-green-800' : badge.prix.includes('Payant') ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'} px-2 py-1 rounded-full">
+                          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 00-1 1v1H6a2 2 0 00-2 2v2h12V6a2 2 0 00-2-2h-3V3a1 1 0 00-1-1zM4 10v4a2 2 0 002 2h8a2 2 0 002-2v-4H4z"/>
+                          </svg>
+                          ${badge.prix}
+                        </span>
+                      </div>
+                      ${text ? `<p class="text-sm text-gray-700">${text}</p>` : ''}
+                      <div class="text-sm text-gray-700 bg-green-50 rounded-lg p-3">
+                        <h5 class="font-semibold mb-2 flex items-center gap-2 text-green-700">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg> Avantages
+                        </h5>
+                        <ul class="list-disc ml-5 space-y-1">${avantages.map(a => `<li>${a}</li>`).join('')}</ul>
+                      </div>
+                      <div class="text-sm text-gray-700 bg-red-50 rounded-lg p-3">
+                        <h5 class="font-semibold mb-2 flex items-center gap-2 text-red-700">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg> Inconvénients
+                        </h5>
+                        <ul class="list-disc ml-5 space-y-1">${inconvenients.map(i => `<li>${i}</li>`).join('')}</ul>
+                      </div>
+                      <div class="text-sm text-gray-700 bg-yellow-50 rounded-lg p-3">
+                        <h5 class="font-semibold mb-2 flex items-center gap-2 text-yellow-700">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z" />
+                          </svg> Conseil
+                        </h5>
+                        <p class="ml-1">${conseil}</p>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `
+                detailsContainer.classList.remove('hidden')
+                detailsContainer.style.display = 'block'
+                AOS.init()
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'))
+                }, 50)
             }
-        }
+        }          
     </script>
 </body>
 
